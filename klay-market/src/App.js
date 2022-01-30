@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Caver from 'caver-js';
 import './App.css';
 
 // 1 Smart contract 배포 주소 파악(가져오기)
