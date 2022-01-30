@@ -36,6 +36,26 @@ const getBalance = (address) => {
 		return balance;
 	})
 }
+
+const setCount = async (newCount) => {
+	// 사용할 account 설정
+	try{
+		const privatekey = '0x646e24fdef558df6b75b6522af48b4b70510233a46b57c4da119cf05feeb88f9';
+		const deployer = caver.wallet.keyring.createFromPrivateKey(privatekey);
+		caver.wallet.add(deployer);
+		// 스마트 컨트랙트 실행 트랜젝션 날리기
+		// 결과 확인
+
+		const receipt = await CountContract.methods.setCount(newCount).send({
+			from: deployer.address, // address
+			gas: "0x4bfd200"//
+		});
+		console.log(receipt);
+	}catch(e) {
+		console.log(`[ERROR_SET_COUNT]${e}`);
+	}
+	
+}
 // 1 Smart contract 배포 주소 파악(가져오기)
 // 2 caver.js 이용해서 스마트 컨드랙트 연동하기
 // 3 가져온 스마트 컨트랙스 실행 결과(데이터) 웹에 표현하기
@@ -47,6 +67,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+		  <button title={'카운트 변경'} onCClick={()=>{setCount(90)}} />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
