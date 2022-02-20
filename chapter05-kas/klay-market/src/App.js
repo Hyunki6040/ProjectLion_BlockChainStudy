@@ -71,7 +71,7 @@ function App() {
 			return;
 		}
 		KlipAPI.mintCardWithURI(
-			// tokenID 할당 받은 범위 : 1002002 ~ 1002099
+			// tokenID 할당 받은 범위 : 1002004 ~ 1002099
 			myAddress, tokenID, metadataURL, setQrvalue, (result) => {
 				alert(JSON.stringify(result));
 		})
@@ -154,7 +154,7 @@ function App() {
 			{tab === "MARKET" || tab === "WALLET" ? (
 				<div className="container" style={{padding:0, width:"100%"}}>
 					{rows.map((o, rowIndex) => (
-						<Row>
+						<Row key={`rowkey${rowIndex}`}>
 							<Col style={{marginRight: 0, paddingRight:0}}>
 								<Card onClick={() => {
 										onClickCard(nfts[rowIndex * 2].id);
@@ -190,7 +190,8 @@ function App() {
 							) : null}
 							<Form>
 								<Form.Group>
-									<!-- 내일 시간 나면 수정해보기 -->
+									{/*내일 시간 나면 수정해보기
+									
 									<Form.Control 
 									value={mintTokenID}
 									onChange={(e)=> {
@@ -198,7 +199,7 @@ function App() {
 										setMintTokenID(e.target.value);
 									}}
 									type="text"
-										placeholder="제목을 입력해주세요"
+										placeholder="토큰 ID를 입력해주세요"
 									/><br/>
 									<Form.Control 
 									value={mintTokenID}
@@ -207,8 +208,8 @@ function App() {
 										setMintTokenID(e.target.value);
 									}}
 									type="text"
-										placeholder="설명을 입력해주세요"
-									/>
+										placeholder="토큰 ID를 입력해주세요"
+									/>*/}
 									<Form.Control 
 									value={mintImageUrl}
 									onChange={(e)=> {
